@@ -33,12 +33,47 @@ define(['model/_memberModel'], function() {
  	validate: function(attrs,options){
             var validationMessage = "";
             if(!attrs.name){
-                validationMessage = "The name can't be empty.";
+                validationMessage = "The name can't be empty. ";
+            }
+            if(!attrs.firstName){
+                validationMessage += "The first name can't be empty. ";
+            }
+            if(!attrs.lastName){
+                validationMessage += "The last name can't be empty. ";
+            }
+            if(!attrs.birthDate){
+                validationMessage += "The birth date can't be empty. ";
+            }
+            else{
+                var d = new Date();
+                if(d - attrs.birthDate >= 31556926000)
+                {
+                    validationMessage += "The age must not be higher than 100 years. ";
+                }
+                if(d-attrs.birthDate <= 0)
+                {
+                    validationMessage += "The birth date can't be equal or higher than today's date. ";
+                }
+            }  
+            if(!attrs.docNumber){
+                validationMessage += "The document number can't be empty. ";
+            }
+            else{
+                if(attrs.docNumber.length < 5)
+                {
+                    validationMessage += "The document number must have more than 5 characters. ";
+                }
+            }
+            if(!attrs.documenttypeId){
+                validationMessage += "The type of document must be specified. ";
+            }
+            if(!attrs.partnerId){
+                validationMessage += "The partner id can't be empty. ";
             }
             if(validationMessage.length>0){
                return validationMessage;
             }
-        }
+        } 
 
     });
 
