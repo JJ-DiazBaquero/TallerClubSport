@@ -1,0 +1,11 @@
+{
+    "displayName" : "ChampionShip",
+    "name" : "championship",
+    "templateName" : "championship",
+    "url" : "championship.html",
+    "server": "localhost:8080",
+    "server": "localhost:8080",
+    "context": "/appSportClub.web/webresources/ChampionShipMaster",
+    
+    "el" : "#main"
+}
