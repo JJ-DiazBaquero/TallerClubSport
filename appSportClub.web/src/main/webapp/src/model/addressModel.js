@@ -34,39 +34,39 @@ define(['model/_addressModel'], function() {
             var validationMessage = "";
             
             if(!attrs.street){
-                validationMessage += "The street must not be empty. "
+                validationMessage += "The street must not be empty. ";
             }
             else{
                 if(Number(attrs.street)===NaN)
                 {
-                    validationMessage += "The street must be a number. "
+                    validationMessage += "The street must be a number. ";
                 }
                 else{
                     if(Number(attrs.street)>999)
                     {
-                        validationMessage += "The street number can't have more than three digits"
+                        validationMessage += "The street number can't have more than three digits";
                     }
                 }
             }
             if(!attrs.aveneu){
-                validationMessage += "The aveneu must not be empty. "
+                validationMessage += "The aveneu must not be empty. ";
             }
             else{
                 if(Number(attrs.aveneu)===NaN)
                 {
-                    validationMessage += "The aveneu must be a number. "
+                    validationMessage += "The aveneu must be a number. ";
                 }
                 else{
                     if(Number(attrs.aveneu)>999)
                     {
-                        validationMessage += "The aveneu number can't have more than three digits"
+                        validationMessage += "The aveneu number can't have more than three digits";
                     }
                 }
                 
             }
-            if(attrs.cityId == "None")
+            if(attrs.cityId === "None")
             {
-                validationMessage += "The city id must be specified"
+                validationMessage += "The city id must be specified";
             }
             
             
