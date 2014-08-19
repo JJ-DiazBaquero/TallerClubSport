@@ -115,11 +115,19 @@
 <!-- Aqui se renderizan los modelos existentes en el modelo de la lista sports. Note el uso de javascript en el interior de los tags <% %> (en este caso un bucle que toma cada ítem de la lista ‘sports’). La variable ‘sports’ será instanciada por el controlador (se verá más adelante) -->
     <% _.each(member, function(member) { %>
 <!-- Se hace un nuevo <tr> por cada elemento en la lista-->
+    <% if(htmlEncode(member.getDisplay('age')) > 17 ) { %>
     <tr>
             <td><%= htmlEncode(member.getDisplay('name')) %></td>
             <!-- esta instrucción indica qué campo del elemento actual del bucle se debe mostrar en ese lugar (cada <td> es una columna)>  -->
             <td><%= htmlEncode(member.getDisplay('age')) %></td>
     </tr>
+    <% } else { %>
+    <tr class="warning">
+            <td><%= htmlEncode(member.getDisplay('name')) %></td>
+            <!-- esta instrucción indica qué campo del elemento actual del bucle se debe mostrar en ese lugar (cada <td> es una columna)>  -->
+            <td><%= htmlEncode(member.getDisplay('age')) %></td>
+    </tr>
+    <% } %>
     <% }); %>
     </tbody>
     </table>
