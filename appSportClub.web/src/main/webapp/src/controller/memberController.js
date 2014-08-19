@@ -42,7 +42,7 @@ define(['controller/_memberController','delegate/memberDelegate'], function() {
             this.$el.slideUp("fast", function() {
                 /*Establece que en el <div> se despliegue el template de la variable “”. Como parámetros entran las variables establecidas dentro de los tags <%%> con sus valores como un objeto JSON. En este caso, la propiedad sports tendrá la lista que instanció “sportSearch” en la variable del bucle <% _.each(sports, function(sport) { %>*/
  
-                self.$el.html(self.listPromedioTemplate({member: self.usuarioAgeModelList.models}));
+                self.$el.html(self.listAgeTemplate({member: self.usuarioAgeModelList.models}));
                 self.$el.slideDown("fast");
             });
         },
@@ -52,36 +52,41 @@ define(['controller/_memberController','delegate/memberDelegate'], function() {
             if (params) {
                 var data = params.data;
             }
-            if (App.Utils.eventExists(this.componentId + '-' + 'instead-sport-list')) {
-                Backbone.trigger(this.componentId + '-' + 'instead-sport-list', {view: this, data: data});
+            if (App.Utils.eventExists(this.componentId + '-' + 'instead-user-list')) {
+                Backbone.trigger(this.componentId + '-' + 'instead-user-list', {view: this, data: data});
             } else {
-                Backbone.trigger(this.componentId + '-' + 'pre-sport-list', {view: this, data: data});
+                Backbone.trigger(this.componentId + '-' + 'pre-user-list', {view: this, data: data});
                 var self = this;
-                if (!this.sportModelList) {
-                    this.sportModelList = new this.listModelClass();
+                if (!this.ageModelList) {
+                    this.ageModelList = new this.listModelClass();
                 }
                 //se obtienen los deportes del servicio getSports
-                this.sportModelList.fetch({
+                this.ageModelList.fetch({
                     data: data,
                     success: function() {
-                        var elementos = self.sportModelList.models;
+                        var elementos = self.ageModelList.models;
                         //Ahora se instancia el nuevo modelo construido
-                        self.sportPromedioModelList = new App.Model.SportPromedioList;
+                        self.usuarioAgeModelList = new App.Model.usuarioAgeList;
                         //Se itera sobre la variable elementos, que corresponden a la lista de modelos obtenida del servico REST getSports
                         _.each(elementos, function(d) {
                             //Se hace el cálculo del nuevo campo
-                            var average = "" + ((parseInt(d.attributes.maxAge) + parseInt(d.attributes.minAge)) / 2);
+                            var today = new Date();
+                            var anioHoy = today.getFullYear();
+                            var nac = new Date(d.attributes.birthdate);
+                            var anioNac = nac.getFullYear();
+                            var age = ""+anioHoy - anioNac;
+
                             /*Ahora se instancia un SportPromModel, con un nuevo objeto JSON como parámetro como constructor (antes sportModel), extrayendo los datos de “d”.*/
-                            var model = new App.Model.SportPromedioModel({name: d.attributes.name, average: average});
+                            var model = new App.Model.usuarioAgeModel({name: d.attributes.name, age: age});
                             //y se agrega finalmente a los modelos prom de la lista.
-                            self.sportPromedioModelList.models.push(model);
+                            self.usuarioAgeModelList.models.push(model);
                         });
                         //Se invoca la función de renderizado para que muestre los resultados en la nueva lista.
-                        self._renderPromedio(params);
-                        Backbone.trigger(self.componentId + '-' + 'post-sport-list', {view: self});
+                        self._renderAge(params);
+                        Backbone.trigger(self.componentId + '-' + 'post-member-list', {view: self});
                     },
                     error: function(mode, error) {
-                        Backbone.trigger(self.componentId + '-' + 'error', {event: 'sport-list', view: self, error: error});
+                        Backbone.trigger(self.componentId + '-' + 'error', {event: 'user-list', view: self, error: error});
                     }
                 });
             }
