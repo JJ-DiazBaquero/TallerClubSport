@@ -72,9 +72,9 @@ define(['controller/_memberController','delegate/memberDelegate'], function() {
                             //Se hace el cálculo del nuevo campo
                             var today = new Date();
                             var anioHoy = today.getFullYear();
-                            var nac = new Date(d.attributes.birthdate);
-                            var anioNac = nac.getFullYear();
-                            var age = ""+anioHoy - anioNac;
+                            var nac = d.attributes.birthDate.split("/");
+                            var anioNac = nac[2];
+                            var age = ""+(anioHoy - parseInt(anioNac));
 
                             /*Ahora se instancia un SportPromModel, con un nuevo objeto JSON como parámetro como constructor (antes sportModel), extrayendo los datos de “d”.*/
                             var model = new App.Model.usuarioAgeModel({name: d.attributes.name, age: age});
