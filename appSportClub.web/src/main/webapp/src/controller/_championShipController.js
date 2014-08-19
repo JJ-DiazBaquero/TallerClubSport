@@ -166,6 +166,10 @@ define(['model/championShipModel'], function(championShipModel) {
 				}));
                 self.$el.slideDown("fast");
             });
+        },
+        
+        language: function(){
+            alert('Usted está viendo la versión en ESPAÑOL de esta página');
         }
     });
     return App.Controller._ChampionShipController;

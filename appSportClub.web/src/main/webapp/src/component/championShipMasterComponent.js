@@ -161,15 +161,15 @@ define(['controller/selectionController', 'model/cacheModel', 'model/championShi
             this.tabModel = new App.Model.TabModel(
                     {
                         tabs: [
-                            {label: "Prize", name: "prize", enable: true},
+                            {label: "Premio", name: "prize", enable: true},
                             ,
                             {label: "Records", name: "records", enable: true},
                             ,
-                            {label: "Stadiums", name: "stadiums", enable: true},
+                            {label: "Estadios", name: "stadiums", enable: true},
                             ,
-                            {label: "Referees", name: "referees", enable: true},
+                            {label: "Arbitros", name: "referees", enable: true},
                             ,
-                            {label: "Secondary Referees", name: "secondaryReferees", enable: true},
+                            {label: "Arbitros secundarios", name: "secondaryReferees", enable: true},
                         ]
                     }
             );
@@ -231,15 +231,25 @@ define(['controller/selectionController', 'model/cacheModel', 'model/championShi
                         params.view.currentRefereeModel.setCacheList(params.view.refereeModelList);
                     });
                     self.prizeToolbarModel = self.prizeComponent.toolbarModel.set(App.Utils.Constans.referenceToolbarConfiguration);
-                    self.prizeComponent.setToolbarModel(self.prizeToolbarModel);                    
+                    self.prizeComponent.setToolbarModel(self.prizeToolbarModel);
+                    self.prizeToolbarModel.set('createName', 'Crear');
+                    self.prizeToolbarModel.set('saveName', 'Guardar');
                     self.recordsToolbarModel = self.recordsComponent.toolbarModel.set(App.Utils.Constans.referenceToolbarConfiguration);
-                    self.recordsComponent.setToolbarModel(self.recordsToolbarModel);                    
+                    self.recordsComponent.setToolbarModel(self.recordsToolbarModel);
+                    self.recordsToolbarModel.set('createName', 'Crear');
+                    self.recordsToolbarModel.set('saveName', 'Guardar');
                     self.stadiumsToolbarModel = self.stadiumsComponent.toolbarModel.set(App.Utils.Constans.containmentToolbarConfiguration);
                     self.stadiumsComponent.setToolbarModel(self.stadiumsToolbarModel);
+                    self.stadiumsToolbarModel.set('addName', 'Agregar');
+                    self.stadiumToolbarModel.set('saveName', 'Guardar');
                     self.refereesToolbarModel = self.refereesComponent.toolbarModel.set(App.Utils.Constans.containmentToolbarConfiguration);
                     self.refereesComponent.setToolbarModel(self.refereesToolbarModel);
+                    self.refereesToolbarModel.set('addName', 'Agregar');
+                    self.refereesToolbarModel.set('saveName', 'Guardar');
                     self.secondaryRefereesToolbarModel = self.secondaryRefereesComponent.toolbarModel.set(App.Utils.Constans.containmentToolbarConfiguration);
                     self.secondaryRefereesComponent.setToolbarModel(self.secondaryRefereesToolbarModel);
+                    self.secondaryRefereesToolbarModel.set('addName', 'Agregar');
+                    self.secondaryRefereesToolbarModel.set('saveName', 'Guardar');
                 	
                      
                 
@@ -247,7 +257,7 @@ define(['controller/selectionController', 'model/cacheModel', 'model/championShi
                         var selection = new App.Controller.SelectionController({"componentId":"stadiumsComponent"});
                         App.Utils.getComponentList('stadiumComponent', function(componentName, model) {
                             if (model.models.length == 0) {
-                                alert('There is no Stadiumss to select.');
+                                alert('No hay estadios para seleccionar.');
                             } else {
                                 selection.showSelectionList({list: model, name: 'name', title: 'Stadiums List'});
                             }
@@ -270,7 +280,7 @@ define(['controller/selectionController', 'model/cacheModel', 'model/championShi
                         var selection = new App.Controller.SelectionController({"componentId":"refereesComponent"});
                         App.Utils.getComponentList('refereeComponent', function(componentName, model) {
                             if (model.models.length == 0) {
-                                alert('There is no Refereess to select.');
+                                alert('No hay arbitros para seleccionar.');
                             } else {
                                 selection.showSelectionList({list: model, name: 'name', title: 'Referees List'});
                             }
@@ -293,7 +303,7 @@ define(['controller/selectionController', 'model/cacheModel', 'model/championShi
                         var selection = new App.Controller.SelectionController({"componentId":"secondaryRefereesComponent"});
                         App.Utils.getComponentList('refereeComponent', function(componentName, model) {
                             if (model.models.length == 0) {
-                                alert('There is no Secondary Refereess to select.');
+                                alert('No hay arbitros para seleccionar.');
                             } else {
                                 selection.showSelectionList({list: model, name: 'name', title: 'Secondary Referees List'});
                             }
