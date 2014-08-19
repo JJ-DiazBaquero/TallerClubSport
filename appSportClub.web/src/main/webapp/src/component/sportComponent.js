@@ -32,7 +32,19 @@ define(['component/_CRUDComponent', 'controller/toolbarController', 'model/toolb
         name: 'sport',
         model: App.Model.SportModel,
         listModel: App.Model.SportList,
-        controller : App.Controller.SportController
+        controller : App.Controller.SportController,
+        
+        postInit: function() {
+            var self = this;
+            
+            this.addButton({name: "Promedio", icon: "glyphicon-stats" }, function() {
+                 self.componentController.sportPromedio();
+            });
+            
+        }
+    
+    
     });
+    
     return App.Component.SportComponent;
 });
