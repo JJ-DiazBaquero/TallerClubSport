@@ -41,6 +41,10 @@ define(['component/_CRUDComponent', 'controller/toolbarController', 'model/toolb
                  self.componentController.sportPromedio();
             });
             
+            Backbone.on(self.componentId + '-sport-show-average', function(params) {
+                self.componentController.average(params);
+            });
+            
         }
     
     

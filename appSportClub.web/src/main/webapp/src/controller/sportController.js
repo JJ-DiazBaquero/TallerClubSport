@@ -85,6 +85,10 @@ define(['controller/_sportController','delegate/sportDelegate'], function() {
                     }
                 });
             }
+        },
+    average: function(params){
+            var avg = ((parseInt(params.maxAge) + parseInt(params.minAge)) / 2);
+            alert('El promedio de edad del deporte es: ' + avg);
         }
     
     

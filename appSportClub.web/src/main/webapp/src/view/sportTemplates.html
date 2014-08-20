@@ -7,6 +7,7 @@
 		 <th>Name</th>
 		 <th>Min Age</th>
 		 <th>Max Age</th>
+         <th>Calcular Promedio</th>
     <th>Actions</th>
     </tr>
     </thead>
@@ -16,6 +17,8 @@
 		<td><%= htmlEncode(sport.getDisplay('name')) %></td>
 		<td><%= htmlEncode(sport.getDisplay('minAge')) %></td>
 		<td><%= htmlEncode(sport.getDisplay('maxAge')) %></td>
+                <td><a onclick="Backbone.trigger('<%= componentId %>-sport-show-average',{maxAge:<%= htmlEncode(sport.getDisplay('maxAge')) %>,minAge:<%= htmlEncode(sport.getDisplay('minAge')) %>}); return false;" >Ver Promedio</a></td>
+    
     <td>
     <% if(showEdit) {%>
     <a onclick="Backbone.trigger('<%= componentId %>-sport-edit',{id:<%= sport.id %>}); return false" >Edit</a> |
