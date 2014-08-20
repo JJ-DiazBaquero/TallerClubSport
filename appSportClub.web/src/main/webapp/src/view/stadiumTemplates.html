@@ -7,6 +7,7 @@
 		 <th>Nombre</th>
 		 <th>Capacidad</th>
 		 <th>Id Ciudad</th>
+                 <th>Ver Categoria</th>
     <th>Acciones</th>
     </tr>
     </thead>
@@ -16,6 +17,7 @@
 		<td><%= htmlEncode(stadium.getDisplay('name')) %></td>
 		<td><%= htmlEncode(stadium.getDisplay('capacity')) %></td>
 		<td><%= htmlEncode(stadium.getDisplay('cityId')) %></td>
+                <td><a onclick="Backbone.trigger('<%= componentId %>-stadium-show-categorie',{capacity:<%= htmlEncode(stadium.getDisplay('capacity')) %> }); return false;" >Ver Categoria</a></td>
     <td>
     <% if(showEdit) {%>
     <a onclick="Backbone.trigger('<%= componentId %>-stadium-edit',{id:<%= stadium.id %>}); return false" >Edit</a> |
