@@ -74,7 +74,7 @@ define(['controller/_memberController','delegate/memberDelegate'], function() {
                             var anioHoy = today.getFullYear();
                             var nac = d.attributes.birthDate.split("/");
                             var anioNac = nac[2];
-                            var age = ""+(aniohoy - parseInt(anioNac));
+                            var age = ""+(anioHoy - parseInt(anioNac));
 
                             /*Ahora se instancia un SportPromModel, con un nuevo objeto JSON como parámetro como constructor (antes sportModel), extrayendo los datos de “d”.*/
                             var model = new App.Model.usuarioAgeModel({name: d.attributes.name, age: age});
