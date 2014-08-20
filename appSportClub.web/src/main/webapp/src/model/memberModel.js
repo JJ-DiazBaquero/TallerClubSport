@@ -46,11 +46,15 @@ define(['model/_memberModel'], function() {
             }
             else{
                 var d = new Date();
-                if(d - attrs.birthDate >= 31556926000)
+                var birth = attrs.birthDate.split("/");
+                var fecha = new Date(birth[2], birth[1], birth[0]);
+                var dia = 24*60*60*1000;
+                var añosDiff = (d.getTime() - fecha.getTime())/365;
+                if( añosDiff/dia >= 100)
                 {
                     validationMessage += "The age must not be higher than 100 years. ";
                 }
-                if(d-attrs.birthDate <= 0)
+                if(añosDiff/dia <= 0)
                 {
                     validationMessage += "The birth date can't be equal or higher than today's date. ";
                 }
