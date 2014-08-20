@@ -31,20 +31,20 @@ define(['model/_addressModel'], function() {
     App.Model.AddressModel = App.Model._AddressModel.extend({
 
  	validate: function(attrs,options){
-            var validationMessage = "";
+            var validationMessage = "";       
             
             if(!attrs.street){
                 validationMessage += "The street must not be empty. ";
             }
             else{
-                if(Number(attrs.street)===NaN)
+                if(isNaN(Number(attrs.street)))
                 {
                     validationMessage += "The street must be a number. ";
                 }
                 else{
                     if(Number(attrs.street)>999)
                     {
-                        validationMessage += "The street number can't have more than three digits";
+                        validationMessage += "The street number can't have more than three digits. ";
                     }
                 }
             }
@@ -52,19 +52,19 @@ define(['model/_addressModel'], function() {
                 validationMessage += "The aveneu must not be empty. ";
             }
             else{
-                if(Number(attrs.aveneu)===NaN)
+                if(isNaN(Number(attrs.aveneu)))
                 {
                     validationMessage += "The aveneu must be a number. ";
                 }
                 else{
                     if(Number(attrs.aveneu)>999)
                     {
-                        validationMessage += "The aveneu number can't have more than three digits";
+                        validationMessage += "The aveneu number can't have more than three digits. ";
                     }
                 }
                 
             }
-            if(attrs.cityId === "None")
+            if(attrs.cityId === "")
             {
                 validationMessage += "The city id must be specified";
             }
